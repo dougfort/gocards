@@ -12,11 +12,11 @@ type Card struct {
 	Rank Rank
 }
 
-// Deck is a group of cards
-type Deck []Card
+// Cards is a group of cards
+type Cards []Card
 
 // SuitSize defines the number of ranks in a suit
 type SuitSize int
 
-// DecDef defines the content of a deck of cards
-type DecDef []SuitSize
+// DeckDef defines the content of a Deck of cards
+type DeckDef []SuitSize

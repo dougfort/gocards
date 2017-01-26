@@ -5,18 +5,18 @@ import (
 	"testing"
 )
 
-func TestDeck(t *testing.T) {
+func TestCards(t *testing.T) {
 	testCases := []struct {
-		def          DecDef
+		def          DeckDef
 		expectedSize int
 	}{
-		{DecDef{}, 0},
-		{DecDef{1}, 1},
+		{DeckDef{}, 0},
+		{DeckDef{1}, 1},
 	}
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("%v", tc.def), func(t *testing.T) {
-			d := NewOrderedDeck(tc.def)
+			d := NewOrderedCards(tc.def)
 			var prev Card
 			var count int
 			for i, card := range d {
