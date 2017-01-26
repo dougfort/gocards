@@ -12,6 +12,7 @@ func TestCards(t *testing.T) {
 	}{
 		{DeckDef{}, 0},
 		{DeckDef{1}, 1},
+		{DeckDef{1, 2, 3}, 6},
 	}
 
 	for _, tc := range testCases {
@@ -21,7 +22,7 @@ func TestCards(t *testing.T) {
 			var count int
 			for i, card := range d {
 				if i > 0 {
-					if !card.LessThan(prev) {
+					if !prev.LessThan(card) {
 						t.Fatalf("out of order: %s <= %s", card.Value(), prev.Value())
 					}
 				}

@@ -20,3 +20,10 @@ type SuitSize int
 
 // DeckDef defines the content of a Deck of cards
 type DeckDef []SuitSize
+
+// Deck defines the interface that card definitons must support
+type Deck interface {
+
+	// DecDef returns the low-level deck definiton
+	DecDef() DeckDef
+}
