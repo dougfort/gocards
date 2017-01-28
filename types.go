@@ -1,5 +1,8 @@
 package gocards
 
+// Version is the reease vrsion
+const Version = "0.0.1"
+
 // Suit represents the suit of a card
 type Suit uint8
 
@@ -24,6 +27,6 @@ type DeckDef []SuitSize
 // Deck defines the interface that card definitons must support
 type Deck interface {
 
-	// DecDef returns the low-level deck definiton
-	DecDef() DeckDef
+	// Size returns the number of cards available from the Deck
+	Size() int
 }

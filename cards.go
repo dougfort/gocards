@@ -20,3 +20,14 @@ func NewOrderedCards(def DeckDef) Cards {
 
 	return cards
 }
+
+// DeckDefSize computes the defined size of a deck
+func DeckDefSize(deckDef DeckDef) int {
+	var totalSize int
+
+	for _, size := range deckDef {
+		totalSize += int(size)
+	}
+
+	return totalSize
+}
