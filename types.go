@@ -29,4 +29,12 @@ type Deck interface {
 
 	// Size returns the number of cards available from the Deck
 	Size() int
+
+	// Shuffle randomly reorders the Cards
+	// This is Seeded shuffle wiht the seed set to the current time
+	Shuffle()
+
+	// SeededShuffle reorders the Cards to the sequence determined by seed
+	// We expect the result to be the same every tie for a given seed
+	SeededShuffle(seed int64)
 }
