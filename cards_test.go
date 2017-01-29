@@ -31,6 +31,10 @@ func TestCards(t *testing.T) {
 			if count != tc.expectedSize {
 				t.Fatalf("size mismatch: %d != %d", count, tc.expectedSize)
 			}
+			if DeckDefSize(tc.def) != tc.expectedSize {
+				t.Fatalf("DeckDefSize mismatch: %d != %d",
+					DeckDefSize(tc.def), tc.expectedSize)
+			}
 		})
 	}
 }
