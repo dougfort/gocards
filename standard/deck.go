@@ -4,6 +4,31 @@ import (
 	"github.com/dougfort/gocards"
 )
 
+// Suit values
+const (
+	Clubs gocards.Suit = iota
+	Diamonds
+	Hearts
+	Spades
+)
+
+// Rank Values
+const (
+	Ace gocards.Rank = iota
+	Two
+	Three
+	Four
+	Five
+	Six
+	Seven
+	Eight
+	Nine
+	Ten
+	Jack
+	Queen
+	King
+)
+
 // deckDef defines the standard deck: 4 suits of thirteen cards each
 var deckDef = gocards.DeckDef{13, 13, 13, 13}
 
