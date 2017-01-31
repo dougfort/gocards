@@ -49,13 +49,21 @@ func TestCards(t *testing.T) {
 			if tc.expectedSize > 1 {
 
 				// after shuffle, the cards should be in different places
-				if matchCount(t, d, sd1) == tc.expectedSize {
+				matchCount, err := MatchCount(d, sd1)
+				if err != nil {
+					t.Fatalf("MatchCount failed: %s", err)
+				}
+				if matchCount == tc.expectedSize {
 					t.Fatalf("shuffled decks are identical")
 				}
 
 				// a shuffle with the same seed should produce the same order
 				sd2 := SeededShuffle(d, seed)
-				if matchCount(t, sd1, sd2) != tc.expectedSize {
+				matchCount, err = MatchCount(sd1, sd2)
+				if err != nil {
+					t.Fatalf("MatchCount failed: %s", err)
+				}
+				if matchCount != tc.expectedSize {
 					t.Fatalf("seeded shuffle is not identical")
 				}
 
@@ -65,19 +73,23 @@ func TestCards(t *testing.T) {
 	}
 }
 
-// matchCount returns the number of matches between to slices of cards
-func matchCount(t *testing.T, c1 Cards, c2 Cards) int {
-	if len(c1) != len(c2) {
-		t.Fatalf("matchCount: size mismatch: %d != %d", len(c1), len(c2))
+func TestMatchCountError(t *testing.T) {
+	deckDef1 := DeckDef{1}
+	deckDef1a := DeckDef{1}
+	deckDef2 := DeckDef{2}
+
+	c1 := NewOrderedCards(deckDef1)
+	c1a := NewOrderedCards(deckDef1a)
+	c2 := NewOrderedCards(deckDef2)
+
+	_, err := MatchCount(c1, c1a)
+	if err != nil {
+		t.Fatalf("unexpected error: %s", err)
 	}
 
-	var count int
-
-	for i := 0; i < len(c1); i++ {
-		if c1[i].Equal(c2[i]) {
-			count++
-		}
+	_, err = MatchCount(c1, c2)
+	if err == nil {
+		t.Fatalf("expected error")
 	}
 
-	return count
 }

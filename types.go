@@ -24,17 +24,36 @@ type SuitSize int
 // DeckDef defines the content of a Deck of cards
 type DeckDef []SuitSize
 
-// Deck defines the interface that card definitons must support
-type Deck interface {
+// OrderedDeck defines the interface to a newly created deck
+type OrderedDeck interface {
 
 	// Size returns the number of cards available from the Deck
 	Size() int
 
 	// Shuffle randomly reorders the Cards
-	// This is Seeded shuffle wiht the seed set to the current time
-	Shuffle()
+	// This is Seeded shuffle with the seed set to the current time
+	Shuffle() PlayableDeck
 
-	// SeededShuffle reorders the Cards to the sequence determined by seed
-	// We expect the result to be the same every tie for a given seed
-	SeededShuffle(seed int64)
+	// SeededShuffle reorders the Cards to the sequence determined by seed.
+	// We expect the result to be the same every time for a given seed.
+	SeededShuffle(seed int64) PlayableDeck
+
+	// PassThroughShuffle makes the deck layable without shuffle
+	PassThroughShuffle() PlayableDeck
+}
+
+// PlayableDeck defines the interface to a deck that is 'in play'
+// You can't shuffle a deck when it's in play
+type PlayableDeck interface {
+
+	// RemainingCards returns the number of cards available from the Deck
+	RemainingCards() int
+
+	// Seed returns the random seed used to uniquely identify the game
+	// Seed == 0 means the cars haven't been shuffled
+	Seed() int64
+
+	// Next returns the next available card and true if there is such a card.
+	// returns false if all cards ave been consumed.
+	Next() (Card, bool)
 }

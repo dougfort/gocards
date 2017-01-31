@@ -1,6 +1,7 @@
 package gocards
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -58,4 +59,22 @@ func DeckDefSize(deckDef DeckDef) int {
 	}
 
 	return totalSize
+}
+
+// MatchCount returns the number of matches between two slices of cards
+// This is inteded for help in testing
+func MatchCount(c1 Cards, c2 Cards) (int, error) {
+	if len(c1) != len(c2) {
+		return 0, fmt.Errorf("matchCount: size mismatch: %d != %d", len(c1), len(c2))
+	}
+
+	var count int
+
+	for i := 0; i < len(c1); i++ {
+		if c1[i].Equal(c2[i]) {
+			count++
+		}
+	}
+
+	return count, nil
 }
