@@ -38,7 +38,7 @@ type OrderedDeck interface {
 	// We expect the result to be the same every time for a given seed.
 	SeededShuffle(seed int64) PlayableDeck
 
-	// PassThroughShuffle makes the deck layable without shuffle
+	// PassThroughShuffle makes the deck playable without shuffle
 	PassThroughShuffle() PlayableDeck
 }
 
