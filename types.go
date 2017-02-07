@@ -1,6 +1,6 @@
 package gocards
 
-// Version is the reease vrsion
+// Version is the release vrsion
 const Version = "0.0.1"
 
 // Suit represents the suit of a card
@@ -54,6 +54,6 @@ type PlayableDeck interface {
 	Seed() int64
 
 	// Next returns the next available card and true if there is such a card.
-	// returns false if all cards ave been consumed.
+	// returns false if all cards have been consumed.
 	Next() (Card, bool)
 }
