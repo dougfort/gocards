@@ -49,6 +49,7 @@ func TestSingleDeck(t *testing.T) {
 				t.Fatalf("size mismatch: %d != %d", ss.RemainingCards(), d.Size())
 			}
 
+			cardCount := make(map[gocards.Card]int)
 			for i := 0; i < d.Size(); i++ {
 				cd, ok := sd.Next()
 				if !ok {
@@ -62,6 +63,19 @@ func TestSingleDeck(t *testing.T) {
 
 				if !cs.Equal(cd) {
 					t.Fatalf("card mismatch: %v != %v", cs, cd)
+				}
+
+				cardCount[cd]++
+			}
+
+			if len(cardCount) != d.Size()/count {
+				t.Fatalf("len(cardCount) (%d) != d.Size() (%d)", len(cardCount), d.Size())
+			}
+
+			for card, n := range cardCount {
+				if n != count {
+					t.Fatalf("invalid card count %s: %d, expected: %d",
+						card.Value(), n, count)
 				}
 			}
 
