@@ -1,9 +1,10 @@
 package gocards
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 // NewOrderedCards creates a Cards ordered by Suit and by Rank within suit
@@ -65,7 +66,7 @@ func DeckDefSize(deckDef DeckDef) int {
 // This is intended for help in testing
 func MatchCount(c1 Cards, c2 Cards) (int, error) {
 	if len(c1) != len(c2) {
-		return 0, fmt.Errorf("matchCount: size mismatch: %d != %d", len(c1), len(c2))
+		return 0, errors.Errorf("matchCount: size mismatch: %d != %d", len(c1), len(c2))
 	}
 
 	var count int
