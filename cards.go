@@ -20,7 +20,7 @@ func NewOrderedCards(def DeckDef) Cards {
 	var i int
 	for suit, suitSize := range def {
 		for rank := 0; rank < int(suitSize); rank++ {
-			cards[i] = Card{Suit(suit), Rank(rank)}
+			cards[i] = Card{Suit(suit + 1), Rank(rank + 1)}
 			i++
 		}
 	}

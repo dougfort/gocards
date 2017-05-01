@@ -6,8 +6,14 @@ const Version = "0.0.1"
 // Suit represents the suit of a card
 type Suit uint8
 
+// NullSuit is a zero value for the Card type: no suit assigned
+const NullSuit Suit = 0
+
 // Rank represents the order within a Suit
 type Rank uint8
+
+// NullRank is a zero value for the Card type: no rank assigned
+const NullRank Rank = 0
 
 // Card represents a single card
 type Card struct {

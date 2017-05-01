@@ -6,7 +6,8 @@ import (
 
 // Suit values
 const (
-	Clubs gocards.Suit = iota
+	NullSuit gocards.Suit = iota
+	Clubs
 	Diamonds
 	Hearts
 	Spades
@@ -14,7 +15,8 @@ const (
 
 // Rank Values
 const (
-	Ace gocards.Rank = iota
+	NullRank gocards.Rank = iota
+	Ace
 	Two
 	Three
 	Four
