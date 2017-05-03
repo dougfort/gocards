@@ -92,36 +92,3 @@ func TestSingleDeck(t *testing.T) {
 		})
 	}
 }
-
-func TestDisplayCards(t *testing.T) {
-	// test that every card has a key in the maps, and that every value is unique
-	runeSet := make(map[rune]struct{})
-	stringSet := make(map[string]struct{})
-
-	for suit := Clubs; suit <= Spades; suit++ {
-		for rank := Ace; rank <= King; rank++ {
-
-			card := gocards.Card{Suit: suit, Rank: rank}
-
-			r, ok := Runes[card]
-			if !ok {
-				t.Fatalf("no rune for card: %s", card.Value())
-			}
-			_, ok = runeSet[r]
-			if ok {
-				t.Fatalf("duplicate rune %c %s", r, card.Value())
-			}
-			runeSet[r] = struct{}{}
-
-			s, ok := Strings[card]
-			if !ok {
-				t.Fatalf("no string for card: %s", card.Value())
-			}
-			_, ok = stringSet[s]
-			if ok {
-				t.Fatalf("duplicate string %s %s", s, card.Value())
-			}
-			stringSet[s] = struct{}{}
-		}
-	}
-}
