@@ -31,8 +31,14 @@ const (
 	King
 )
 
+// CardsOfSuit is the number of cards that belong to each suit
+const CardsOfSuit = 13
+
+// SuitsInDeck is the number of suits in a deckk
+const SuitsInDeck = 4
+
 // deckDef defines the standard deck: 4 suits of thirteen cards each
-var deckDef = gocards.DeckDef{13, 13, 13, 13}
+var deckDef = gocards.DeckDef{CardsOfSuit, CardsOfSuit, CardsOfSuit, CardsOfSuit}
 
 type orderedImpl struct {
 	cards gocards.Cards
